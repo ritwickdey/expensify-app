@@ -1,3 +1,5 @@
 import React from 'react';
 
-export const EditExpensePage = () => <p>This is from Edit Component</p>;
+export const EditExpensePage = params => (
+  <p>Editing Expense id {params.match.params.id}</p>
+);
