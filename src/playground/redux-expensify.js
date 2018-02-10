@@ -1,4 +1,5 @@
 import { createStore, combineReducers } from 'redux';
+import uuid from 'uuid';
 
 /**
  * Operations :-
@@ -28,15 +29,38 @@ import { createStore, combineReducers } from 'redux';
     };
  */
 
+const addExpense = ({
+  description = '',
+  note = '',
+  ammount = 0,
+  createdAt = Date.now()
+} = {}) => ({
+  type: 'ADD_EXPENSE',
+  expense: {
+    id: uuid(),
+    description,
+    note,
+    ammount,
+    createdAt
+  }
+});
+
 const expensesReducerDefaultState = () => [];
 const expensesReducer = (state = expensesReducerDefaultState(), action) => {
   switch (action.type) {
+    case 'ADD_EXPENSE':
+      return state.concat(action.expense);
     default:
       return state;
   }
 };
 
-const filterReducerDefaultState = () => ({});
+const filterReducerDefaultState = () => ({
+  text: '',
+  sortBy: 'date',
+  startDate: undefined,
+  endDate: undefined
+});
 const filterReducer = (state = filterReducerDefaultState(), action) => {
   switch (action.type) {
     default:
@@ -51,5 +75,12 @@ const store = createStore(
   })
 );
 
+store.dispatch(
+  addExpense({
+    ammount: 100,
+    note: 'big note......',
+    description: 'small desccription'
+  })
+);
 store.subscribe(() => console.log(store.getState()));
 console.log(store.getState());
