@@ -17,12 +17,12 @@ import uuid from 'uuid';
           id: '...',
           description: '...',
           note: '.............',
-          ammount: 0,
+          amount: 0,
           createdAt: 0
         }],
         filter: {
           text: 'rent',
-          sortBy: 'ammount', // date or ammount
+          sortBy: 'amount', // date or amount
           startDate: undefined,
           endDate: undefined
         }
@@ -32,7 +32,7 @@ import uuid from 'uuid';
 const addExpense = ({
   description = '',
   note = '',
-  ammount = 0,
+  amount = 0,
   createdAt = Date.now()
 } = {}) => ({
   type: 'ADD_EXPENSE',
@@ -40,7 +40,7 @@ const addExpense = ({
     id: uuid(),
     description,
     note,
-    ammount,
+    amount,
     createdAt
   }
 });
@@ -58,6 +58,14 @@ const removeExpense = ({ id = '' } = {}) => ({
 const setTextFilter = (text = '') => ({
   type: 'SET_TEXT_FILTER',
   text
+});
+
+const sortByAmount = () => ({
+  type: 'SORT_BY_AMOUNT'
+});
+
+const sortByDate = () => ({
+  type: 'SORT_BY_DATE'
 });
 
 const expensesReducerDefaultState = () => [];
@@ -90,6 +98,10 @@ const filterReducer = (state = filterReducerDefaultState(), action) => {
   switch (action.type) {
     case 'SET_TEXT_FILTER':
       return { ...state, text: action.text };
+    case 'SORT_BY_AMOUNT':
+      return { ...state, sortBy: 'amount' };
+    case 'SORT_BY_DATE':
+      return { ...state, sortBy: 'date' };
     default:
       return state;
   }
@@ -107,12 +119,12 @@ store.subscribe(() => console.log(store.getState()));
 
 // add Expense dispatch
 const expense1 = store.dispatch(
-  addExpense({ ammount: 100, description: 'rent' })
+  addExpense({ amount: 100, description: 'rent' })
 );
 
 // add Expense dispatch
 const expense2 = store.dispatch(
-  addExpense({ ammount: 500, description: 'Coffee' })
+  addExpense({ amount: 500, description: 'Coffee' })
 );
 
 // remove Expense dispatch
@@ -121,7 +133,7 @@ store.dispatch(removeExpense({ id: expense1.expense.id }));
 // Edit expense dispatch
 store.dispatch(
   editExpense(expense2.expense.id, {
-    ammount: 200,
+    amount: 200,
     description: 'special coffee'
   })
 );
@@ -129,3 +141,7 @@ store.dispatch(
 // set Text Filter expense dispath
 store.dispatch(setTextFilter('Text1'));
 store.dispatch(setTextFilter());
+
+// Sort by Ammount & Date dispath
+store.dispatch(sortByAmount());
+store.dispatch(sortByDate());
