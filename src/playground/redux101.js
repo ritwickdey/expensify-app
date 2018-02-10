@@ -1,6 +1,3 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-
 import { createStore } from 'redux';
 
 const getDefaultState = () => ({ count: 0 });
@@ -29,7 +26,7 @@ const appReducer = (state = getDefaultState(), action) => {
     case 'DECREMENT':
       return { count: state.count - action.decrementBy };
     case 'RESET':
-      return getDefaultState();
+      return { count: 0 };
     case 'SET':
       return { count: action.count };
     default:
@@ -49,5 +46,3 @@ store.dispatch(decrementCount());
 
 store.dispatch(resetCount());
 store.dispatch(setCount({ count: 101 }));
-
-ReactDOM.render(<div>Hello</div>, document.getElementById('app'));
