@@ -45,6 +45,11 @@ const addExpense = ({
   }
 });
 
+const editExpense = (id, updates) => ({
+  type: 'EDIT_EXPENSE',
+  expense: { ...updates, id }
+});
+
 const removeExpense = ({ id = '' } = {}) => ({
   type: 'REMOVE_EXPENSE',
   expense: { id }
@@ -57,6 +62,13 @@ const expensesReducer = (state = expensesReducerDefaultState(), action) => {
       return [...state, action.expense];
     case 'REMOVE_EXPENSE':
       return state.filter(e => e.id !== action.expense.id);
+    case 'EDIT_EXPENSE':
+      return state.map(
+        e =>
+          e.id === action.expense.id
+            ? { ...e, ...action.expense, id: action.expense.id }
+            : e
+      );
     default:
       return state;
   }
@@ -97,4 +109,12 @@ const expense2 = store.dispatch(
 );
 
 // remove Expense dispatch
-store.dispatch(removeExpense({ id: expense2.expense.id }));
+store.dispatch(removeExpense({ id: expense1.expense.id }));
+
+// Edit expense dispath
+store.dispatch(
+  editExpense(expense2.expense.id, {
+    ammount: 200,
+    description: 'special coffee'
+  })
+);
