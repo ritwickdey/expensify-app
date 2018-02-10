@@ -4,22 +4,25 @@ import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 
 const getDefaultState = () => ({ count: 0 });
+
 const incrementCount = (payload = {}) => ({
   type: 'INCREMENT',
   incrementBy: typeof payload.incrementBy == 'number' ? payload.incrementBy : 1
 });
 
+const decrementCount = (payload = {}) => ({
+  type: 'DECREMENT',
+  decrementBy: typeof payload.decrementBy == 'number' ? payload.decrementBy : 1
+});
+
+const resetCount = () => ({ type: 'RESET' });
+
 const store = createStore((state = getDefaultState(), action) => {
-  
   switch (action.type) {
     case 'INCREMENT':
-      return Object.assign({}, state, {
-        count: state.count + (action.incrementBy || 1)
-      });
+      return { count: state.count + action.incrementBy };
     case 'DECREMENT':
-      return Object.assign({}, state, {
-        count: state.count - (action.decrementBy || 1)
-      });
+      return { count: state.count - action.decrementBy };
     case 'RESET':
       return getDefaultState();
     case 'SET':
@@ -27,7 +30,6 @@ const store = createStore((state = getDefaultState(), action) => {
     default:
       return state;
   }
-
 });
 
 store.subscribe(() => console.log(store.getState()));
@@ -36,18 +38,13 @@ store.dispatch(incrementCount({ incrementBy: 10 }));
 
 store.dispatch(incrementCount());
 
-store.dispatch({
-  type: 'DECREMENT',
-  decrementBy: 50
-});
-
+store.dispatch(decrementCount({ decrementBy: 50 }));
+store.dispatch(decrementCount());
 
 store.dispatch(incrementCount());
 store.dispatch(incrementCount());
 
-store.dispatch({
-  type: 'RESET'
-});
+store.dispatch(resetCount());
 
 store.dispatch({
   type: 'SET',
