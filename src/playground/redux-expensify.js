@@ -10,24 +10,33 @@ import { createStore, combineReducers } from 'redux';
  *    SORT_BY_AMOUNT
  *    SET_START_DATE
  *    SET_END_DATE
+ * 
+ * const demoState = {
+        expenses: [{
+          id: '...',
+          description: '...',
+          note: '.............',
+          ammount: 0,
+          createdAt: 0
+        }],
+        filter: {
+          text: 'rent',
+          sortBy: 'ammount', // date or ammount
+          startDate: undefined,
+          endDate: undefined
+        }
+    };
  */
 
-const demoState = {
-  expenses: [
-    {
-      id: '...',
-      description: '...',
-      note: '.............',
-      ammount: 0,
-      createdAt: 0
-    }
-  ],
-  filter: {
-    text: 'rent',
-    sortBy: 'ammount', // date or ammount
-    startDate: undefined,
-    endDate: undefined
+const expensesReducerDefaultState = () => [];
+const expensesReducer = (state = expensesReducerDefaultState(), action) => {
+  switch (action.type) {
+    default:
+      return state;
   }
 };
 
-console.log(demoState);
+const store = createStore(expensesReducer);
+
+store.subscribe(() => console.log(store.getState()));
+console.log(store.getState());
