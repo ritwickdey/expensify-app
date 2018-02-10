@@ -22,7 +22,7 @@ const setCount = ({ count = 0 }) => ({
   count
 });
 
-const store = createStore((state = getDefaultState(), action) => {
+const appReducer = (state = getDefaultState(), action) => {
   switch (action.type) {
     case 'INCREMENT':
       return { count: state.count + action.incrementBy };
@@ -35,23 +35,19 @@ const store = createStore((state = getDefaultState(), action) => {
     default:
       return state;
   }
-});
+};
+
+const store = createStore(appReducer);
 
 store.subscribe(() => console.log(store.getState()));
 
 store.dispatch(incrementCount({ incrementBy: 10 }));
-
 store.dispatch(incrementCount());
 
 store.dispatch(decrementCount({ decrementBy: 50 }));
 store.dispatch(decrementCount());
 
-store.dispatch(incrementCount());
-store.dispatch(incrementCount());
-
 store.dispatch(resetCount());
-
 store.dispatch(setCount({ count: 101 }));
-
 
 ReactDOM.render(<div>Hello</div>, document.getElementById('app'));
