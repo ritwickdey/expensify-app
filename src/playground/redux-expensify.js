@@ -36,7 +36,20 @@ const expensesReducer = (state = expensesReducerDefaultState(), action) => {
   }
 };
 
-const store = createStore(expensesReducer);
+const filterReducerDefaultState = () => ({});
+const filterReducer = (state = filterReducerDefaultState(), action) => {
+  switch (action.type) {
+    default:
+      return state;
+  }
+};
+
+const store = createStore(
+  combineReducers({
+    expenses: expensesReducer,
+    filter: filterReducer
+  })
+);
 
 store.subscribe(() => console.log(store.getState()));
 console.log(store.getState());
