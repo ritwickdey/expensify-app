@@ -17,6 +17,11 @@ const decrementCount = (payload = {}) => ({
 
 const resetCount = () => ({ type: 'RESET' });
 
+const setCount = ({ count = 0 }) => ({
+  type: 'SET',
+  count
+});
+
 const store = createStore((state = getDefaultState(), action) => {
   switch (action.type) {
     case 'INCREMENT':
@@ -26,7 +31,7 @@ const store = createStore((state = getDefaultState(), action) => {
     case 'RESET':
       return getDefaultState();
     case 'SET':
-      return { count: action.count || state.count || 0 };
+      return { count: action.count };
     default:
       return state;
   }
@@ -46,9 +51,7 @@ store.dispatch(incrementCount());
 
 store.dispatch(resetCount());
 
-store.dispatch({
-  type: 'SET',
-  count: 101
-});
+store.dispatch(setCount({ count: 101 }));
+
 
 ReactDOM.render(<div>Hello</div>, document.getElementById('app'));
