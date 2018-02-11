@@ -14,7 +14,7 @@ const appStore = store();
 
 appStore.subscribe(() => {
   const state = appStore.getState();
-  console.log(getFilteredExpense(state.expenses, state.filter));
+  console.log(getFilteredExpense(state.expenses, state.filters));
 });
 
 const expense1 = appStore.dispatch(
