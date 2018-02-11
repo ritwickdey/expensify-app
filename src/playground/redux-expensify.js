@@ -78,6 +78,27 @@ const setEndDate = date => ({
   date
 });
 
+const getFilteredExpense = (
+  expenses,
+  { endDate, startDate, sortBy, text = '' }
+) => {
+  // console.log(endDate, startDate, sortBy, text)
+  return expenses.filter(expense => {
+    const startDateMatch =
+      typeof startDate !== 'number' || expense.createdAt >= startDate;
+
+    const endDateMatch =
+      typeof endDate !== 'number' || expense.createdAt <= endDate;
+
+    const textMatch = expense.description
+      .trim()
+      .toLowerCase()
+      .includes(text.trim().toLowerCase());
+
+    return startDateMatch && endDateMatch && textMatch;
+  });
+};
+
 const expensesReducerDefaultState = () => [];
 const expensesReducer = (state = expensesReducerDefaultState(), action) => {
   switch (action.type) {
@@ -129,39 +150,43 @@ const store = createStore(
 );
 
 // subscription
-store.subscribe(() => console.log(store.getState()));
+store.subscribe(() => {
+  const state = store.getState();
+  const filteredState = getFilteredExpense(state.expenses, state.filter);
+  console.log(filteredState);
+});
 
 // add Expense dispatch
 const expense1 = store.dispatch(
-  addExpense({ amount: 100, description: 'rent' })
+  addExpense({ amount: 100, description: 'rent', createdAt: 100 })
 );
 
 // add Expense dispatch
 const expense2 = store.dispatch(
-  addExpense({ amount: 500, description: 'Coffee' })
+  addExpense({ amount: 500, description: 'Coffee', createdAt: -50 })
 );
 
-// remove Expense dispatch
-store.dispatch(removeExpense({ id: expense1.expense.id }));
+// // remove Expense dispatch
+// store.dispatch(removeExpense({ id: expense1.expense.id }));
 
-// Edit expense dispatch
-store.dispatch(
-  editExpense(expense2.expense.id, {
-    amount: 200,
-    description: 'special coffee'
-  })
-);
+// // Edit expense dispatch
+// store.dispatch(
+//   editExpense(expense2.expense.id, {
+//     amount: 200,
+//     description: 'special coffee'
+//   })
+// );
 
-// set Text Filter expense dispath
-store.dispatch(setTextFilter('Text1'));
-store.dispatch(setTextFilter());
+// // set Text Filter expense dispath
+// store.dispatch(setTextFilter('rent'));
+// store.dispatch(setTextFilter());
 
-// Sort by Ammount & Date dispath
-store.dispatch(sortByAmount());
-store.dispatch(sortByDate());
+// // Sort by Ammount & Date dispath
+// store.dispatch(sortByAmount());
+// store.dispatch(sortByDate());
 
-// Set Start & End Date
-store.dispatch(setStartDate(120));
-store.dispatch(setStartDate());
-store.dispatch(setEndDate(550));
-store.dispatch(setEndDate());
+// // Set Start & End Date
+// store.dispatch(setStartDate(-1000));
+// store.dispatch(setStartDate());
+// store.dispatch(setEndDate(25));
+// store.dispatch(setEndDate());
