@@ -30,8 +30,8 @@ const expense3 = appStore.dispatch(
 );
 
 // appStore.dispatch(removeExpense({ id: expense1.expense.id }));
-appStore.dispatch(setTextFilter('Bill'));
-appStore.dispatch(sortByAmount());
+// appStore.dispatch(setTextFilter('Bill'));
+// appStore.dispatch(sortByAmount());
 
 const jsx = (
   <Provider store={appStore}>
