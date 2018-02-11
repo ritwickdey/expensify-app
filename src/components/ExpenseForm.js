@@ -1,19 +1,23 @@
 import React from 'react';
 import moment from 'moment';
+
 import 'react-dates/initialize';
 import { SingleDatePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 
-const now = moment();
-console.log(now.format('Do MMM,YY'));
-
 export default class ExpenseForm extends React.Component {
-  state = {
+  
+  defaultState = () => ({
     description: '',
     note: '',
     amount: '',
     createdAt: moment(),
-    calenderfocused: false
+    calenderfocused: false,
+    error: undefined
+  });
+
+  state = {
+    ...this.defaultState()
   };
 
   onDescriptionChange = e => {
@@ -33,7 +37,7 @@ export default class ExpenseForm extends React.Component {
   };
 
   onDateChange = createdAt => {
-    if(!createdAt) return;
+    if (!createdAt) return;
     this.setState(() => ({ createdAt }));
   };
 
@@ -41,10 +45,31 @@ export default class ExpenseForm extends React.Component {
     this.setState(() => ({ calenderfocused: focused }));
   };
 
+  onSubmitHandler = e => {
+    e.preventDefault();
+    const description = this.state.description.trim();
+    if (!description || !this.state.amount) {
+      this.setState(() => ({
+        error: 'Description & Amount fields are required'
+      }));
+      return;
+    }
+    this.props.onSubmit({
+      amount: +this.state.amount,
+      createdAt: this.state.createdAt.valueOf(),
+      note: this.state.note,
+      description: description
+    });
+    this.setState(() => ({
+      ...this.defaultState()
+    }));
+  };
+
   render() {
     return (
       <div>
-        <form>
+        {this.state.error && <p>{this.state.error}</p>}
+        <form onSubmit={this.onSubmitHandler}>
           <input
             value={this.state.description}
             onChange={this.onDescriptionChange}
