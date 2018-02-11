@@ -28,11 +28,12 @@ export default class ExpenseForm extends React.Component {
 
   onAmountChange = e => {
     const amount = e.target.value.trim();
-    if (!amount.match(/^\d*(\.\d{0,2}){0,1}$/)) return;
+    if (amount && !amount.match(/^\d{1,}(\.\d{0,2}){0,1}$/)) return;
     this.setState(() => ({ amount }));
   };
 
   onDateChange = createdAt => {
+    if(!createdAt) return;
     this.setState(() => ({ createdAt }));
   };
 
