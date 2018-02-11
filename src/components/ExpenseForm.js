@@ -6,7 +6,9 @@ import { SingleDatePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 
 export default class ExpenseForm extends React.Component {
-  
+  constructor(props) {
+    super(props);
+  }
   defaultState = () => ({
     description: '',
     note: '',
@@ -17,7 +19,13 @@ export default class ExpenseForm extends React.Component {
   });
 
   state = {
-    ...this.defaultState()
+    ...this.defaultState(),
+    description: this.props.expense ? this.props.expense.description : '',
+    note: this.props.expense ? this.props.expense.note : '',
+    amount: this.props.expense ? this.props.expense.amount : '',
+    createdAt: this.props.expense
+      ? moment(this.props.expense.createdAt)
+      : moment()
   };
 
   onDescriptionChange = e => {
@@ -90,7 +98,7 @@ export default class ExpenseForm extends React.Component {
             onFocusChange={this.onCalenderFocusChange}
             numberOfMonths={1}
             isOutsideRange={() => false}
-            displayFormat="Do MMM,YY"
+            displayFormat="DD/MM/YY"
           />
           <textarea
             value={this.state.note}
