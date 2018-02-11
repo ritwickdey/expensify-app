@@ -26,7 +26,7 @@ const expense2 = appStore.dispatch(
 );
 
 const expense3 = appStore.dispatch(
-  addExpense({ amount: 459, description: 'Coffee Bill', createdAt: -50 })
+  addExpense({ amount: 45900, description: 'Coffee Bill', createdAt: -50 })
 );
 
 // appStore.dispatch(removeExpense({ id: expense1.expense.id }));
