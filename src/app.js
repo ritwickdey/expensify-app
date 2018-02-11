@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+
 import { AppRouter } from './routes/AppRouter';
 import { store } from './store/configureStore';
 import { addExpense, removeExpense } from './actions/expenses';
@@ -31,4 +33,9 @@ const expense3 = appStore.dispatch(
 appStore.dispatch(setTextFilter('Bill'));
 appStore.dispatch(sortByAmount());
 
-ReactDOM.render(<AppRouter />, document.getElementById('app'));
+const jsx = (
+  <Provider store={appStore}>
+    <AppRouter />
+  </Provider>
+);
+ReactDOM.render(jsx, document.getElementById('app'));
