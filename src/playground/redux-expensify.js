@@ -80,23 +80,29 @@ const setEndDate = date => ({
 
 const getFilteredExpense = (
   expenses,
-  { endDate, startDate, sortBy, text = '' }
+  { endDate, startDate, sortBy = 'date', text = '' }
 ) => {
   // console.log(endDate, startDate, sortBy, text)
-  return expenses.filter(expense => {
-    const startDateMatch =
-      typeof startDate !== 'number' || expense.createdAt >= startDate;
+  return expenses
+    .filter(expense => {
+      const startDateMatch =
+        typeof startDate !== 'number' || expense.createdAt >= startDate;
 
-    const endDateMatch =
-      typeof endDate !== 'number' || expense.createdAt <= endDate;
+      const endDateMatch =
+        typeof endDate !== 'number' || expense.createdAt <= endDate;
 
-    const textMatch = expense.description
-      .trim()
-      .toLowerCase()
-      .includes(text.trim().toLowerCase());
+      const textMatch = expense.description
+        .trim()
+        .toLowerCase()
+        .includes(text.trim().toLowerCase());
 
-    return startDateMatch && endDateMatch && textMatch;
-  });
+      return startDateMatch && endDateMatch && textMatch;
+    })
+    .sort((a, b) => {
+      if (sortBy === 'amount') return a.amount < b.amount ? 1 : -1;
+      
+      return a.createdAt < b.createdAt ? 1 : -1;
+    });
 };
 
 const expensesReducerDefaultState = () => [];
