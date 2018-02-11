@@ -105,7 +105,7 @@ export default class ExpenseForm extends React.Component {
             onChange={this.onNoteChange}
             placeholder="Add a note for expense (optional)"
           />
-          <button>Add Expense</button>
+          <button>{this.props.submitBtnName || 'Add Expense'}</button>
         </form>
       </div>
     );

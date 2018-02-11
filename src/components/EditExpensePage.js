@@ -8,6 +8,7 @@ const EditExpensePage = props => (
   <div>
     <h2>Edit Expense</h2>
     <ExpenseForm
+      submitBtnName="Update Expense"
       expense={props.expense}
       onSubmit={expense => {
         props.dispatch(editExpense(props.match.params.id, expense));
