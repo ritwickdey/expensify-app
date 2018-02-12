@@ -30,8 +30,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: './public/index.html',
-      baseName : '/expensify-app/',
-      inject: false
+      baseName : '/expensify-app/'
     })
   ]
 };
