@@ -1,10 +1,11 @@
 const path = require('path');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/app.js',
   output: {
-    path: path.join(__dirname, 'public'),
+    path: path.join(__dirname, 'dist'),
     filename: 'bundle.js'
   },
   module: {
@@ -25,6 +26,12 @@ module.exports = {
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: false,
       mangle: false
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: './public/index.html',
+      baseName : '/expensify-app/',
+      inject: false
     })
   ]
 };

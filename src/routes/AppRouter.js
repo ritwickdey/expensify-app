@@ -7,8 +7,10 @@ import { Header } from '../components/Header';
 import { HelpExpensePage } from '../components/HelpExpensePage';
 import { NotFoundPage } from '../components/NotFoundPage';
 
+const base = document.getElementsByTagName('base')[0].getAttribute('href');
+
 export const AppRouter = () => (
-  <BrowserRouter>
+  <BrowserRouter basename={base}>
     <div>
       <Header />
       <Switch>

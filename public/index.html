@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<base href="/expensify-app/">
+<base href="<%= htmlWebpackPlugin.options.baseName %>">
 
 <head>
   <meta charset="UTF-8">
@@ -12,11 +12,6 @@
 <body>
   <div id="app"></div>
 
-  <!-- Developent -->
-  <script src="/bundle.js"></script>
-
-  <!-- Production -->
-  <script src="./bundle.js"></script>
 </body>
 
 </html>
