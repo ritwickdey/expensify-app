@@ -8,7 +8,8 @@
     "build": "webpack --config=webpack.config.js",
     "build:prod": "webpack --config=webpack.config.js -p --env=production",
     "build:watch": "npm run build -- --watch",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "npm test -- --watch"
   },
   "dependencies": {
     "moment": "^2.20.1",
