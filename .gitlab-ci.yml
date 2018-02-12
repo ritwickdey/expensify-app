@@ -3,19 +3,20 @@ image: node:8.6.0
 cache:
   paths:
     - node_modules/
+    - .yarn-cache
 
 before_script:
-  - npm install
+  - yarn install
 
 test:
   stage: test
   script:
-    - npm test
+    - yarn test
 
 pages:
   stage: deploy
   script:
-    - npm run build:prod
+    - yarn run build:prod
     - rm -rf public
     - mv dist/ public/
   artifacts:
