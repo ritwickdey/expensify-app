@@ -14,14 +14,18 @@ const expenses = [
     description: 'Some Tea Bill',
     note: '',
     amount: 2000,
-    createdAt: moment(0).subtract(10, 'days').valueOf()
+    createdAt: moment(0)
+      .subtract(10, 'days')
+      .valueOf()
   },
   {
     id: '3',
     description: 'Light Bill',
     note: '',
     amount: 500,
-    createdAt: moment(0).add(10, 'days').valueOf()
+    createdAt: moment(0)
+      .add(10, 'days')
+      .valueOf()
   }
 ];
 
@@ -67,4 +71,26 @@ test('should filter by start & end date filter', () => {
   expect(result).not.toContainEqual(expenses[2]);
   expect(result).toContainEqual(expenses[0]);
   expect(result).toContainEqual(expenses[1]);
+});
+
+test('should sort by amount', () => {
+  const filter = {
+    sortBy: 'amount'
+  };
+
+  const result = getFilteredExpense(expenses, filter);
+  expect(result[0]).toEqual(expenses[1]);
+  expect(result[1]).toEqual(expenses[2]);
+  expect(result[2]).toEqual(expenses[0]);
+});
+
+test('should sort by date', () => {
+  const filter = {
+    sortBy: 'date'
+  };
+
+  const result = getFilteredExpense(expenses, filter);
+  expect(result[0]).toEqual(expenses[2]);
+  expect(result[1]).toEqual(expenses[0]);
+  expect(result[2]).toEqual(expenses[1]);
 });
