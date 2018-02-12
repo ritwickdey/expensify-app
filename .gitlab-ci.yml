@@ -1,0 +1,26 @@
+image: node:8.6.0 
+
+cache:
+  paths:
+    - node_modules/
+
+before_script:
+  - npm install
+
+# test:
+#   stage: test
+#   script:
+#     - CI=true npm test
+
+pages:
+  stage: deploy
+  script:
+    - npm run build:prod
+    # - mv public/*.html build/
+    # - rm -rf public
+    # - mv build public
+  artifacts:
+    paths:
+      - public 
+  only:
+    - master 
