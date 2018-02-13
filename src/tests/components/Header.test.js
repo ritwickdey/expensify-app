@@ -1,5 +1,4 @@
 import React from 'react';
-import reactShallowRenderer from 'react-test-renderer/shallow';
 import { shallow } from 'enzyme';
 
 import { Header } from '../../components/Header';
