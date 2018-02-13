@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Expense List Item correctly 1`] = `
+<div>
+  <h3>
+    <Link
+      replace={false}
+      to="/edit/1"
+    >
+      Some Coffee Bill
+    </Link>
+  </h3>
+  <p>
+    ₹
+    100
+     - 
+    1st Jan,1970
+  </p>
+  <button
+    onClick={[Function]}
+  >
+    Delete
+  </button>
+  <br />
+</div>
+`;
+
+exports[`should render Expense-List-Item  1`] = `
+<div>
+  <h3>
+    <Link
+      replace={false}
+      to="/edit/1"
+    >
+      Some Coffee Bill
+    </Link>
+  </h3>
+  <p>
+    ₹
+    100
+     - 
+    1st Jan,1970
+  </p>
+  <button
+    onClick={[Function]}
+  >
+    Delete
+  </button>
+  <br />
+</div>
+`;

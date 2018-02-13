@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { removeExpense } from '../actions/expenses';
 import moment from 'moment';
 
-const ExpenseListItem = ({ id, description, amount, createdAt, dispatch }) => (
+export const ExpenseListItem = ({ id, description, amount, createdAt, dispatch }) => (
   <div>
     <h3>
       <Link to={'/edit/' + id}>{description}</Link>
