@@ -9,6 +9,7 @@ import { getFilteredExpense } from './selectors/expenses';
 import { setTextFilter, sortByAmount } from './actions/filters';
 import { AppRouter } from './routes/AppRouter';
 
+import 'react-dates/lib/css/_datepicker.css';
 import './styles/style.scss';
 
 const appStore = store();

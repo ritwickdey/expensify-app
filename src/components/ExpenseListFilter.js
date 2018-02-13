@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import { DateRangePicker } from 'react-dates';
 import moment from 'moment';
 
-import 'react-dates/lib/css/_datepicker.css';
-
 import {
   setTextFilter,
   sortByAmount,
