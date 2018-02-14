@@ -11,7 +11,7 @@ import {
   setEndDate
 } from '../actions/filters';
 
-class ExpenseListFilter extends React.Component {
+export class ExpenseListFilter extends React.Component {
   state = {
     calenderfocused: null
   };
