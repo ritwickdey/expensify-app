@@ -1,4 +1,6 @@
 const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const extractCSS = new ExtractTextPlugin('styles.css');
 
 const commonSetup = () => ({
   entry: './src/app.js',
@@ -15,11 +17,13 @@ const commonSetup = () => ({
       },
       {
         test: /\.s?css$/,
-        use: ['style-loader', 'css-loader', 'sass-loader']
+        use: extractCSS.extract({
+          use: ['css-loader', 'sass-loader']
+        })
       }
     ]
   },
-  plugins: []
+  plugins: [extractCSS]
 });
 
 module.exports = { commonSetup };
