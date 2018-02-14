@@ -6,14 +6,20 @@ import { EditExpensePage } from '../../components/EditExpensePage';
 
 import { expenses } from '../fixtures/expenses';
 
-let editExpense, history, wrapper, match;
+let editExpense, removeExpense, history, wrapper, match;
 
 beforeEach(() => {
   editExpense = jest.fn();
+  removeExpense = jest.fn();
   history = { push: jest.fn() };
   match = { params: { id: 'foo-id' } };
   wrapper = shallow(
-    <EditExpensePage match={match} editExpense={editExpense} history={history} />
+    <EditExpensePage
+      match={match}
+      removeExpense={removeExpense}
+      editExpense={editExpense}
+      history={history}
+    />
   );
 });
 
@@ -26,4 +32,14 @@ test('should handle on submit', () => {
 
   expect(history.push).toHaveBeenCalled();
   expect(editExpense).toHaveBeenCalled();
+});
+
+test('should handle on delete button', () => {
+  wrapper
+    .find('button')
+    .at(0)
+    .simulate('click');
+
+  expect(history.push).toHaveBeenCalled();
+  expect(removeExpense).toHaveBeenCalled();
 });
