@@ -4,14 +4,14 @@ import { connect } from 'react-redux';
 import ExpenseForm from './ExpenseForm';
 import { editExpense } from '../actions/expenses';
 
-const EditExpensePage = props => (
+export const EditExpensePage = props => (
   <div>
     <h2>Edit Expense</h2>
     <ExpenseForm
       submitBtnName="Update Expense"
       expense={props.expense}
       onSubmit={expense => {
-        props.dispatch(editExpense(props.match.params.id, expense));
+        props.onSubmit(props.match.params.id, expense);
         props.history.push('/');
       }}
     />
@@ -24,4 +24,12 @@ const mapStateToProps = (state, props) => {
   return { expense };
 };
 
-export default connect(mapStateToProps)(EditExpensePage);
+const mapDispatchToProps = dispatch => {
+  return {
+    onSubmit: (id, expense) => {
+      dispatch(editExpense(id, expense));
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditExpensePage);
