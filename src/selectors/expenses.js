@@ -1,8 +1,8 @@
 import moment from 'moment';
 
 export const getFilteredExpense = (
-  expenses,
-  { endDate, startDate, sortBy = 'date', text = '' }
+  expenses = [],
+  { endDate, startDate, sortBy = 'date', text = '' } = {}
 ) => {
   return expenses
     .filter(expense => {
