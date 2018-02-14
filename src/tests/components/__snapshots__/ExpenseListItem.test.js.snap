@@ -16,11 +16,6 @@ exports[`should render Expense List Item correctly 1`] = `
      - 
     1st Jan,1970
   </p>
-  <button
-    onClick={[Function]}
-  >
-    Delete
-  </button>
   <br />
 </div>
 `;

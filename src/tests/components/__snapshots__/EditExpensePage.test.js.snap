@@ -9,5 +9,10 @@ exports[`should render add expense page correctly 1`] = `
     onSubmit={[Function]}
     submitBtnName="Update Expense"
   />
+  <button
+    onClick={[Function]}
+  >
+    Delete
+  </button>
 </div>
 `;
