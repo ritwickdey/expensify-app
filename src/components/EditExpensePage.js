@@ -11,13 +11,13 @@ export const EditExpensePage = props => (
       submitBtnName="Update Expense"
       expense={props.expense}
       onSubmit={expense => {
-        props.editExpense(props.match.params.id, expense);
+        props.editExpense(props.expense.id, expense);
         props.history.push('/');
       }}
     />
     <button
       onClick={() => {
-        props.removeExpense({ id: props.match.params.id });
+        props.removeExpense({ id: props.expense.id });
         props.history.push('/');
       }}
     >
