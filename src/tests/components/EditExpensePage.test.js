@@ -6,14 +6,14 @@ import { EditExpensePage } from '../../components/EditExpensePage';
 
 import { expenses } from '../fixtures/expenses';
 
-let onSubmit, history, wrapper, match;
+let editExpense, history, wrapper, match;
 
 beforeEach(() => {
-  onSubmit = jest.fn();
+  editExpense = jest.fn();
   history = { push: jest.fn() };
   match = { params: { id: 'foo-id' } };
   wrapper = shallow(
-    <EditExpensePage match={match} onSubmit={onSubmit} history={history} />
+    <EditExpensePage match={match} editExpense={editExpense} history={history} />
   );
 });
 
@@ -25,5 +25,5 @@ test('should handle on submit', () => {
   wrapper.find(ExpenseForm).prop('onSubmit')('foo-id', expenses[0]);
 
   expect(history.push).toHaveBeenCalled();
-  expect(onSubmit).toHaveBeenCalled();
+  expect(editExpense).toHaveBeenCalled();
 });

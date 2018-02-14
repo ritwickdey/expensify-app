@@ -11,7 +11,7 @@ export const EditExpensePage = props => (
       submitBtnName="Update Expense"
       expense={props.expense}
       onSubmit={expense => {
-        props.onSubmit(props.match.params.id, expense);
+        props.editExpense(props.match.params.id, expense);
         props.history.push('/');
       }}
     />
@@ -26,7 +26,7 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onSubmit: (id, expense) => {
+    editExpense: (id, expense) => {
       dispatch(editExpense(id, expense));
     }
   };
