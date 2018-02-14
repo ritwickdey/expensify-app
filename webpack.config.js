@@ -10,7 +10,7 @@ const setup = env => {
     console.info('Production Build')
     config.plugins.push(
       new webpack.optimize.UglifyJsPlugin({
-        sourceMap: false,
+        sourceMap: true,
         mangle: false
       }),
       new HtmlWebpackPlugin({
@@ -29,7 +29,7 @@ const setup = env => {
       })
     );
     Object.assign(config, {
-      devtool: 'cheap-module-eval-source-map',
+      devtool: 'inline-source-map',
       devServer: {
         contentBase: path.join(__dirname, 'public'),
         historyApiFallback: true

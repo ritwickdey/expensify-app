@@ -8,6 +8,7 @@ const commonSetup = () => ({
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js'
   },
+  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -17,8 +18,21 @@ const commonSetup = () => ({
       },
       {
         test: /\.s?css$/,
-        use: extractCSS.extract({
-          use: ['css-loader', 'sass-loader']
+        use: ExtractTextPlugin.extract({
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: true
+              }
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true
+              }
+            }
+          ]
         })
       }
     ]

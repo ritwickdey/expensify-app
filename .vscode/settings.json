@@ -3,5 +3,6 @@
   "prettier.singleQuote": true,
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
-  }
+  },
+  "liveServer.settings.root": "/dist"
 }
