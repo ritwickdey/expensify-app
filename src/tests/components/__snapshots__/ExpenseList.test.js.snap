@@ -16,7 +16,7 @@ exports[`should render ExpenseList with expenses 1`] = `
   <h1>
     Expense list
   </h1>
-  <Connect(ExpenseListItem)
+  <ExpenseListItem
     amount={100}
     createdAt={0}
     description="Some Coffee Bill"
@@ -24,7 +24,7 @@ exports[`should render ExpenseList with expenses 1`] = `
     key="1"
     note=""
   />
-  <Connect(ExpenseListItem)
+  <ExpenseListItem
     amount={2000}
     createdAt={-864000000}
     description="Some Tea Bill"
@@ -32,7 +32,7 @@ exports[`should render ExpenseList with expenses 1`] = `
     key="2"
     note=""
   />
-  <Connect(ExpenseListItem)
+  <ExpenseListItem
     amount={500}
     createdAt={864000000}
     description="Light Bill"
