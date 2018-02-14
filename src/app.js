@@ -11,7 +11,6 @@ import { AppRouter } from './routes/AppRouter';
 
 import 'react-dates/lib/css/_datepicker.css';
 import './styles/style.scss';
-
 const appStore = store();
 
 appStore.subscribe(() => {
