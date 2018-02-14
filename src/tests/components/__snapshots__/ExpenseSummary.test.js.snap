@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render ExpenseList with muliple expense 1`] = `
+<div>
+  <p>
+    Total Amount: ₹
+    5500
+     | Viewing
+     
+    4
+     of 
+    5
+     
+    expenses
+  </p>
+</div>
+`;
+
+exports[`should render ExpenseList with one expense 1`] = `
+<div>
+  <p>
+    Total Amount: ₹
+    500
+     | Viewing
+     
+    1
+     of 
+    1
+     
+    expense
+  </p>
+</div>
+`;

@@ -6,8 +6,9 @@ import { getExpensesTotal } from '../selectors/expenses-total';
 export const ExpenseSummary = props => (
   <div>
     <p>
-      Total Expenses: ₹{props.expensesFilterTotal} | Viewing{' '}
-      {props.expensesFilterCount} of {props.expensesCount}
+      Total Amount: ₹{props.expensesFilterTotal} | Viewing{' '}
+      {props.expensesFilterCount} of {props.expensesCount}{' '}
+      {props.expensesCount > 1 ? 'expenses' : 'expense'}
     </p>
   </div>
 );
