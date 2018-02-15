@@ -5,3 +5,7 @@ import 'react-dates/initialize';
 configure({
   adapter: new Adapter()
 });
+
+require('dotenv').config({
+  path: `.env.test`
+});

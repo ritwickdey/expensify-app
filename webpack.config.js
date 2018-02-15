@@ -4,10 +4,18 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const { commonSetup } = require('./webpack.common');
 
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`
+});
+
+console.log(`Using file '.env.${process.env.NODE_ENV}' for env variable`);
+
 const setup = env => {
   const config = commonSetup();
   if (env == 'production') {
-    console.info('Production Build')
+    console.info('Production Build');
     config.plugins.push(
       new webpack.optimize.UglifyJsPlugin({
         sourceMap: true,
@@ -20,7 +28,7 @@ const setup = env => {
       })
     );
   } else {
-    console.info('Development Build')
+    console.info('Development Build');
     config.plugins.push(
       new HtmlWebpackPlugin({
         filename: 'index.html',
