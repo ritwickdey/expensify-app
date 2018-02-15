@@ -7,7 +7,8 @@ import {
   removeExpense,
   setExpenses,
   startSetExpenses,
-  startRemoveExpense
+  startRemoveExpense,
+  startEditExpense
 } from '../../actions/expenses';
 import { expenses } from '../fixtures/expenses';
 
@@ -67,6 +68,29 @@ test('should setup edit expense action object', () => {
     },
     type: 'EDIT_EXPENSE'
   });
+});
+
+test('should setup edit expense to database and store', done => {
+  const store = createMockStore({});
+  const expense = expenses[0];
+  const newExpense = { ...expenses[2] };
+  delete newExpense.id; //removing id prop
+
+  const id = expense.id;
+  store
+    .dispatch(startEditExpense(id, newExpense))
+    .then(() => {
+      const actions = store.getActions();
+      expect(actions).toContainEqual({
+        type: 'EDIT_EXPENSE',
+        expense: { ...newExpense, id }
+      });
+      return database.ref(`/expenses/${id}`).once('value');
+    })
+    .then(snapshot => {
+      expect(snapshot.val()).toEqual(newExpense);
+      done();
+    });
 });
 
 test('should setup add expense action object', () => {
