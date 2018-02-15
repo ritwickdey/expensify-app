@@ -16,6 +16,8 @@ export const expensesReducer = (
             ? { ...e, ...action.expense, id: action.expense.id }
             : e
       );
+    case 'SET_EXPENSE':
+      return action.expenses;
     default:
       return state;
   }

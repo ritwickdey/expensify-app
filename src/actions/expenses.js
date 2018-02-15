@@ -19,8 +19,7 @@ export const startAddExpense = (expenseData = {}) => {
     return database
       .ref('/expenses')
       .push(expense)
-      .then(ref => dispatch(addExpense({ id: ref.key, ...expense })))
-      .catch(e => console.log(e));
+      .then(ref => dispatch(addExpense({ id: ref.key, ...expense })));
   };
 };
 
@@ -33,3 +32,25 @@ export const removeExpense = ({ id = '' } = {}) => ({
   type: 'REMOVE_EXPENSE',
   expense: { id }
 });
+
+export const setExpenses = expenses => ({
+  type: 'SET_EXPENSE',
+  expenses
+});
+
+export const startSetExpenses = () => {
+  return dispatch => {
+    return database
+      .ref('/expenses')
+      .once('value')
+      .then(snapshot => {
+        const rawData = snapshot.val();
+        const expenses = Object.keys(rawData).reduce((prev, current) => {
+          prev.push({ ...rawData[current], id: current });
+          return prev;
+        }, []);
+
+        return dispatch(setExpenses(expenses));
+      });
+  };
+};
