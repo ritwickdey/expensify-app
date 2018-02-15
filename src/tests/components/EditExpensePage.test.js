@@ -6,17 +6,17 @@ import { EditExpensePage } from '../../components/EditExpensePage';
 
 import { expenses } from '../fixtures/expenses';
 
-let editExpense, startRemoveExpense, history, wrapper, match;
+let startEditExpense, startRemoveExpense, history, wrapper, match;
 const expense = expenses[0];
 beforeEach(() => {
-  editExpense = jest.fn();
+  startEditExpense = jest.fn();
   startRemoveExpense = jest.fn();
   history = { push: jest.fn() };
   wrapper = shallow(
     <EditExpensePage
       expense={expense}
       startRemoveExpense={startRemoveExpense}
-      editExpense={editExpense}
+      startEditExpense={startEditExpense}
       history={history}
     />
   );
@@ -30,7 +30,7 @@ test('should handle on submit', () => {
   wrapper.find(ExpenseForm).prop('onSubmit')(expense);
 
   expect(history.push).toHaveBeenCalled();
-  expect(editExpense).toHaveBeenLastCalledWith(expense.id, expense);
+  expect(startEditExpense).toHaveBeenLastCalledWith(expense.id, expense);
 });
 
 test('should handle on delete button', () => {
