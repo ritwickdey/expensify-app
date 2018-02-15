@@ -12,6 +12,19 @@ import { database } from '../../firebase/firebase';
 
 const createMockStore = configureStore([ReduxThunk]);
 
+beforeEach(done => {
+  const data = expenses.reduce((prev, current) => {
+    prev[current.id] = { ...current };
+    delete prev[current.id].id;
+    return prev;
+  }, {});
+
+  database
+    .ref(`/expenses`)
+    .set(data)
+    .then(() => done());
+});
+
 test('should setup remove expense action object', () => {
   const action = removeExpense({ id: '123' });
   expect(action).toEqual({
@@ -86,21 +99,7 @@ test('should add expense with default value to database and store', done => {
       return database.ref(`/expenses/${actions[0].expense.id}`).once('value');
     })
     .then(snapshot => {
-      expect(snapshot.val()).toEqual({...defaultExpenseTestValue});
+      expect(snapshot.val()).toEqual({ ...defaultExpenseTestValue });
       done();
     });
 });
-
-// xtest('should setup add expense action object with default value', () => {
-//   const action = addExpense();
-//   expect(action).toEqual({
-//     expense: {
-//       amount: 0,
-//       description: '',
-//       createdAt: expect.any(Number),
-//       note: '',
-//       id: expect.any(String)
-//     },
-//     type: 'ADD_EXPENSE'
-//   });
-// });

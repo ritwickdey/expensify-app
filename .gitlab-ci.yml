@@ -3,7 +3,6 @@ image: node:8.6.0
 cache:
   paths:
     - node_modules/
-    - .yarn-cache
 
 before_script:
   - yarn install
