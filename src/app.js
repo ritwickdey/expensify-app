@@ -4,7 +4,11 @@ import { Provider } from 'react-redux';
 import 'react-dates/initialize';
 
 import { store } from './store/configureStore';
-import { addExpense, removeExpense } from './actions/expenses';
+import {
+  addExpense,
+  removeExpense,
+  startSetExpenses
+} from './actions/expenses';
 import { getFilteredExpense } from './selectors/expenses';
 import { setTextFilter, sortByAmount } from './actions/filters';
 import { AppRouter } from './routes/AppRouter';
@@ -41,4 +45,12 @@ const jsx = (
     <AppRouter />
   </Provider>
 );
-ReactDOM.render(jsx, document.getElementById('app'));
+
+ReactDOM.render(<div>Loading...</div>, document.getElementById('app'));
+
+appStore
+  .dispatch(startSetExpenses())
+  .then(() => {
+    ReactDOM.render(jsx, document.getElementById('app'));
+    console.log('Fetch Done!');
+  })
