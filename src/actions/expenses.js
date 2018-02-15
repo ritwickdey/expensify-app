@@ -28,6 +28,21 @@ export const editExpense = (id, updates) => ({
   expense: { ...updates, id }
 });
 
+export const startEditExpense = (id, updates) => {
+  return dispatch => {
+    const { description, note, amount, createdAt } = updates;
+    return database
+      .ref(`/expenses/${id}`)
+      .update({
+        description,
+        note,
+        amount,
+        createdAt
+      })
+      .then(() => dispatch(editExpense(id, updates)));
+  };
+};
+
 export const removeExpense = ({ id = '' } = {}) => ({
   type: 'REMOVE_EXPENSE',
   expense: { id }
@@ -53,7 +68,7 @@ export const startSetExpenses = () => {
       .ref('/expenses')
       .once('value')
       .then(snapshot => {
-        const rawData = snapshot.val();
+        const rawData = snapshot.val() || {};
         const expenses = Object.keys(rawData).reduce((prev, current) => {
           prev.push({ ...rawData[current], id: current });
           return prev;
