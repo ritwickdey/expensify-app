@@ -4,7 +4,9 @@ import {
   startAddExpense,
   addExpense,
   editExpense,
-  removeExpense
+  removeExpense,
+  setExpenses,
+  startSetExpenses
 } from '../../actions/expenses';
 import { expenses } from '../fixtures/expenses';
 
@@ -102,4 +104,12 @@ test('should add expense with default value to database and store', done => {
       expect(snapshot.val()).toEqual({ ...defaultExpenseTestValue });
       done();
     });
+});
+
+test('should setup set expense action object with data', () => {
+  const action = setExpenses(expenses);
+  expect(action).toEqual({
+    type: 'SET_EXPENSE',
+    expenses
+  });
 });
