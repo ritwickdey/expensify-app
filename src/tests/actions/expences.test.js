@@ -8,6 +8,8 @@ import {
 } from '../../actions/expenses';
 import { expenses } from '../fixtures/expenses';
 
+import { database } from '../../firebase/firebase';
+
 const createMockStore = configureStore([ReduxThunk]);
 
 test('should setup remove expense action object', () => {
@@ -53,17 +55,23 @@ test('should add expense with default value to database and store', done => {
   const store = createMockStore({});
   const expense = { ...expenses[1] };
   delete expense.id;
-  store.dispatch(startAddExpense(expense)).then(() => {
-    const action = store.getActions();
-    expect(action).toContainEqual({
-      type: 'ADD_EXPENSE',
-      expense: {
-        id: expect.any(String),
-        ...expense
-      }
+  store
+    .dispatch(startAddExpense(expense))
+    .then(() => {
+      const actions = store.getActions();
+      expect(actions).toContainEqual({
+        type: 'ADD_EXPENSE',
+        expense: {
+          id: expect.any(String),
+          ...expense
+        }
+      });
+      return database.ref(`/expenses/${actions[0].expense.id}`).once('value');
+    })
+    .then(snapshot => {
+      expect(snapshot.val()).toEqual(expense);
+      done();
     });
-    done();
-  });
 });
 
 // xtest('should setup add expense action object with default value', () => {
