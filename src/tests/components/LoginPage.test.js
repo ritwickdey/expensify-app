@@ -4,6 +4,6 @@ import { shallow } from 'enzyme';
 import { LoginPage } from '../../components/LoginPage';
 
 test('should render Login Page correctly', () => {
-  const wrapper = shallow(<LoginPage />);
+  const wrapper = shallow(<LoginPage startLogin={() => {}} />);
   expect(wrapper).toMatchSnapshot();
 });
