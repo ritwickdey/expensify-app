@@ -11,6 +11,7 @@ test:
   stage: test
   script:
     - yarn test
+  coverage: All files[^|]*\|[^|]*\s+([\d\.]+)
 
 pages:
   stage: deploy

@@ -4,5 +4,5 @@
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
   },
-  "liveServer.settings.root": "/dist"
+  "liveServer.settings.root": "/coverage/lcov-report/"
 }
