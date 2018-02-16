@@ -11,7 +11,7 @@ import {
 } from './actions/expenses';
 import { getFilteredExpense } from './selectors/expenses';
 import { setTextFilter, sortByAmount } from './actions/filters';
-import { AppRouter } from './routes/AppRouter';
+import { AppRouter, history } from './routes/AppRouter';
 import { firebase } from './firebase/firebase';
 
 import 'react-dates/lib/css/_datepicker.css';
@@ -47,14 +47,24 @@ const jsx = (
   </Provider>
 );
 
+let hasRendered = false;
+const renderApp = () => {
+  if (!hasRendered) {
+    ReactDOM.render(jsx, document.getElementById('app'));
+    hasRendered = true;
+  }
+};
+
 ReactDOM.render(<div>Loading...</div>, document.getElementById('app'));
 
-appStore.dispatch(startSetExpenses()).then(() => {
-  ReactDOM.render(jsx, document.getElementById('app'));
-  console.log('Fetch Done!');
-});
-
 firebase.auth().onAuthStateChanged(user => {
-  if (user) console.log('logged in', user);
-  else console.log('logged out');
+  if (user) {
+    appStore.dispatch(startSetExpenses()).then(() => renderApp());
+    if (history.location.pathname === '/') history.push('/dashboard');
+    console.log('logged in');
+  } else {
+    renderApp();
+    history.push('/');
+    console.log('logged out');
+  }
 });
