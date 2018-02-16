@@ -1,0 +1,14 @@
+.input-text {
+  width: 100%;
+  padding: $sm-size;
+  font-size: $m-text-size;
+  outline: none;
+  border: 1px solid $off-white3;
+  line-height: 1.8;
+}
+
+.select {
+  @extend .input-text;
+  padding-top: 1.4rem;
+  padding-bottom: 1.4rem;
+}
