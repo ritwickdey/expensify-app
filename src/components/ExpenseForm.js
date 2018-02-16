@@ -74,8 +74,8 @@ export default class ExpenseForm extends React.Component {
   render() {
     return (
       <div className="container">
-        {this.state.error && <p>{this.state.error}</p>}
-        <form onSubmit={this.onSubmitHandler}>
+        {this.state.error && <p className="form__error">{this.state.error}</p>}
+        <form className="form" onSubmit={this.onSubmitHandler}>
           <input
             className="input-text"
             value={this.state.description}
@@ -106,7 +106,11 @@ export default class ExpenseForm extends React.Component {
             onChange={this.onNoteChange}
             placeholder="Add a note for expense (optional)"
           />
-          <button className="btn">{this.props.submitBtnName || 'Add Expense'}</button>
+          <div>
+            <button className="btn">
+              {this.props.submitBtnName || 'Add Expense'}
+            </button>
+          </div>
         </form>
       </div>
     );
