@@ -1,33 +1,95 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render ExpenseList with muliple expense 1`] = `
-<div>
-  <p>
-    Total Amount: ₹
-    5500
-     | Viewing
-     
-    4
-     of 
-    5
-     
-    expenses
-  </p>
+<div
+  className="page-summary"
+>
+  <div
+    className="container"
+  >
+    <p
+      className="page-summary__details"
+    >
+      Viewing 
+      <span>
+         
+        4
+         
+      </span>
+       of
+       
+      <span>
+         
+        5
+         
+      </span>
+       
+      expenses
+       | Total :
+       
+      <span>
+         ₹
+        5500
+      </span>
+    </p>
+    <div
+      className="page-summary__actions"
+    >
+      <Link
+        className="btn"
+        replace={false}
+        to="/create"
+      >
+        Add Expense
+      </Link>
+    </div>
+  </div>
 </div>
 `;
 
 exports[`should render ExpenseList with one expense 1`] = `
-<div>
-  <p>
-    Total Amount: ₹
-    500
-     | Viewing
-     
-    1
-     of 
-    1
-     
-    expense
-  </p>
+<div
+  className="page-summary"
+>
+  <div
+    className="container"
+  >
+    <p
+      className="page-summary__details"
+    >
+      Viewing 
+      <span>
+         
+        1
+         
+      </span>
+       of
+       
+      <span>
+         
+        1
+         
+      </span>
+       
+      expense
+       | Total :
+       
+      <span>
+         ₹
+        500
+      </span>
+    </p>
+    <div
+      className="page-summary__actions"
+    >
+      <Link
+        className="btn"
+        replace={false}
+        to="/create"
+      >
+        Add Expense
+      </Link>
+    </div>
+  </div>
 </div>
 `;
