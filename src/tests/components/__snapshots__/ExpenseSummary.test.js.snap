@@ -7,31 +7,35 @@ exports[`should render ExpenseList with muliple expense 1`] = `
   <div
     className="container"
   >
-    <p
+    <div
       className="page-summary__details"
     >
-      Viewing 
-      <span>
+      <div>
+        Viewing 
+        <span>
+           
+          4
+           
+        </span>
+         of
          
-        4
+        <span>
+           
+          5
+           
+        </span>
          
-      </span>
-       of
-       
-      <span>
-         
-        5
-         
-      </span>
-       
-      expenses
-       | Total :
-       
-      <span>
-         ₹
-        5500
-      </span>
-    </p>
+        expenses
+        .
+      </div>
+      <div>
+        Total : 
+        <span>
+           ₹
+          5500
+        </span>
+      </div>
+    </div>
     <div
       className="page-summary__actions"
     >
@@ -54,31 +58,35 @@ exports[`should render ExpenseList with one expense 1`] = `
   <div
     className="container"
   >
-    <p
+    <div
       className="page-summary__details"
     >
-      Viewing 
-      <span>
+      <div>
+        Viewing 
+        <span>
+           
+          1
+           
+        </span>
+         of
          
-        1
+        <span>
+           
+          1
+           
+        </span>
          
-      </span>
-       of
-       
-      <span>
-         
-        1
-         
-      </span>
-       
-      expense
-       | Total :
-       
-      <span>
-         ₹
-        500
-      </span>
-    </p>
+        expense
+        .
+      </div>
+      <div>
+        Total : 
+        <span>
+           ₹
+          500
+        </span>
+      </div>
+    </div>
     <div
       className="page-summary__actions"
     >
