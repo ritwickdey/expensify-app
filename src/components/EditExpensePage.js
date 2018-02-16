@@ -6,7 +6,11 @@ import { startEditExpense, startRemoveExpense } from '../actions/expenses';
 
 export const EditExpensePage = props => (
   <div>
-    <h2>Edit Expense</h2>
+    <div className="page-summary">
+      <div className="container">
+        <h2>Edit Expense</h2>
+      </div>
+    </div>
     <ExpenseForm
       submitBtnName="Update Expense"
       expense={props.expense}
@@ -15,14 +19,17 @@ export const EditExpensePage = props => (
         props.history.push('/');
       }}
     />
-    <button
-      onClick={() => {
-        props.startRemoveExpense({ id: props.expense.id });
-        props.history.push('/');
-      }}
-    >
-      Delete
-    </button>
+    <div className="container">
+      <button
+        className="btn btn__danger"
+        onClick={() => {
+          props.startRemoveExpense({ id: props.expense.id });
+          props.history.push('/');
+        }}
+      >
+        Delete Expense
+      </button>
+    </div>
   </div>
 );
 

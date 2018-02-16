@@ -5,7 +5,11 @@ import { startAddExpense } from '../actions/expenses';
 
 export const AddExpensePage = props => (
   <div>
-    <h2>Add Expense</h2>
+    <div className="page-summary">
+      <div className="container">
+        <h2>Add Expense</h2>
+      </div>
+    </div>
     <ExpenseForm
       onSubmit={expense => {
         props.startAddExpense(expense);

@@ -12,3 +12,9 @@
   padding-top: 1.4rem;
   padding-bottom: 1.4rem;
 }
+
+.text-area {
+  @extend .input-text;
+  min-height: 10rem;
+  max-width: 100%;
+}
