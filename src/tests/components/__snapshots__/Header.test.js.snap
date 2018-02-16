@@ -20,13 +20,6 @@ exports[`should render header correctly 1`] = `
   >
     Create Expense
   </NavLink>
-  <NavLink
-    activeClassName="is-active"
-    ariaCurrent="true"
-    to="/help"
-  >
-    Help
-  </NavLink>
   <button
     onClick={[MockFunction]}
   >
