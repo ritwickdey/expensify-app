@@ -10,20 +10,7 @@ const config = {
 
 firebase.initializeApp(config);
 
-const database = firebase.database();
+export const database = firebase.database();
+export const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
-export { firebase, database };
-
-// const database = firebase.database();
-
-// database.ref('/expences').on('value', snapshot => {
-//   const rawData = snapshot.val();
-//   const result = Object.keys(rawData).reduce((prev, current) => {
-//     prev.push({
-//       ...rawData[current],
-//       id: current
-//     });
-//     return prev;
-//   }, []);
-//   console.log(result);
-// });
+export { firebase };

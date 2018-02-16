@@ -12,6 +12,7 @@ import {
 import { getFilteredExpense } from './selectors/expenses';
 import { setTextFilter, sortByAmount } from './actions/filters';
 import { AppRouter } from './routes/AppRouter';
+import { firebase } from './firebase/firebase';
 
 import 'react-dates/lib/css/_datepicker.css';
 import './styles/style.scss';
@@ -48,9 +49,12 @@ const jsx = (
 
 ReactDOM.render(<div>Loading...</div>, document.getElementById('app'));
 
-appStore
-  .dispatch(startSetExpenses())
-  .then(() => {
-    ReactDOM.render(jsx, document.getElementById('app'));
-    console.log('Fetch Done!');
-  })
+appStore.dispatch(startSetExpenses()).then(() => {
+  ReactDOM.render(jsx, document.getElementById('app'));
+  console.log('Fetch Done!');
+});
+
+firebase.auth().onAuthStateChanged(user => {
+  if (user) console.log('logged in', user);
+  else console.log('logged out');
+});
