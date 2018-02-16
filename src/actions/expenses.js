@@ -1,13 +1,16 @@
 import uuid from 'uuid';
 import { database } from '../firebase/firebase';
 
+export const getDBPathSaveRef = uid => `/users/${uid}/expenses`;
+
 export const addExpense = expense => ({
   type: 'ADD_EXPENSE',
   expense
 });
 
 export const startAddExpense = (expenseData = {}) => {
-  return dispatch => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
     const {
       description = '',
       note = '',
@@ -17,7 +20,7 @@ export const startAddExpense = (expenseData = {}) => {
 
     const expense = { description, note, amount, createdAt };
     return database
-      .ref('/expenses')
+      .ref(getDBPathSaveRef(uid))
       .push(expense)
       .then(ref => dispatch(addExpense({ id: ref.key, ...expense })));
   };
@@ -29,10 +32,11 @@ export const editExpense = (id, updates) => ({
 });
 
 export const startEditExpense = (id, updates) => {
-  return dispatch => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
     const { description, note, amount, createdAt } = updates;
     return database
-      .ref(`/expenses/${id}`)
+      .ref(`${getDBPathSaveRef(uid)}/${id}`)
       .update({
         description,
         note,
@@ -49,9 +53,10 @@ export const removeExpense = ({ id = '' } = {}) => ({
 });
 
 export const startRemoveExpense = ({ id }) => {
-  return dispatch => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
     return database
-      .ref(`/expenses/${id}`)
+      .ref(`${getDBPathSaveRef(uid)}/${id}`)
       .remove()
       .then(() => dispatch(removeExpense({ id })));
   };
@@ -63,9 +68,10 @@ export const setExpenses = expenses => ({
 });
 
 export const startSetExpenses = () => {
-  return dispatch => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
     return database
-      .ref('/expenses')
+      .ref(`${getDBPathSaveRef(uid)}`)
       .once('value')
       .then(snapshot => {
         const rawData = snapshot.val() || {};

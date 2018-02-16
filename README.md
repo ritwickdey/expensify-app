@@ -3,6 +3,8 @@
 An Expense Manager. This app is built with React with Redux architure.
 
 [![pipeline status](https://gitlab.com/ritwickdey/expensify-app/badges/master/pipeline.svg)](https://gitlab.com/ritwickdey/expensify-app/commits/master)
+[![coverage report](https://gitlab.com/ritwickdey/expensify-app/badges/master/coverage.svg)](https://gitlab.com/ritwickdey/expensify-app/commits/master)
+
 
 ## Demo
 
