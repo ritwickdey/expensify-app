@@ -12,7 +12,7 @@ export const ExpenseList = props => (
       <div className="show-for-large-screen">Amount</div>
     </div>
     {!props.expenses || props.expenses.length === 0 ? (
-      <p>No Expense</p>
+      <p className="list-item list-item__message">No Expense So Far!</p>
     ) : (
       props.expenses.map(e => <ExpenseListItem key={e.id} {...e} />)
     )}
