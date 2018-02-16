@@ -13,12 +13,13 @@ html {
 body {
   font-family: Helvetica, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: $m-size;
+  overflow-x: hidden;
   // background-color: $color2;
   // color: $off-white;
 }
 
 #app {
-  //margin-bottom: $l-size;
+  margin-bottom: $l-size;
 }
 
 .is-active {

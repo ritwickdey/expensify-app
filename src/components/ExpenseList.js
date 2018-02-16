@@ -5,8 +5,12 @@ import ExpenseListItem from './ExpenseListItem';
 import { getFilteredExpense } from '../selectors/expenses';
 
 export const ExpenseList = props => (
-  <div>
-    <h1>Expense list</h1>
+  <div className="container">
+    <div className="list-header">
+      <div className="show-for-small-screen">Expenses</div>
+      <div className="show-for-large-screen">Expenses</div>
+      <div className="show-for-large-screen">Amount</div>
+    </div>
     {!props.expenses || props.expenses.length === 0 ? (
       <p>No Expense</p>
     ) : (

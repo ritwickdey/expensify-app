@@ -1,0 +1,11 @@
+.show-for-small-screen {
+  @media (min-width: $desktop-breakpoint) {
+    display: none;
+  }
+}
+
+.show-for-large-screen {
+  @media (max-width: $desktop-breakpoint) {
+    display: none;
+  }
+}
