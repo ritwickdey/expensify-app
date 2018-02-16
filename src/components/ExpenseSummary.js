@@ -7,12 +7,16 @@ import { getExpensesTotal } from '../selectors/expenses-total';
 export const ExpenseSummary = props => (
   <div className="page-summary">
     <div className="container">
-      <p className="page-summary__details">
-        Viewing <span> {props.expensesFilterCount} </span> of{' '}
-        <span> {props.expensesCount} </span>{' '}
-        {props.expensesCount > 1 ? 'expenses' : 'expense'} | Total :{' '}
-        <span> ₹{props.expensesFilterTotal}</span>
-      </p>
+      <div className="page-summary__details">
+        <div>
+          Viewing <span> {props.expensesFilterCount} </span> of{' '}
+          <span> {props.expensesCount} </span>{' '}
+          {props.expensesCount > 1 ? 'expenses' : 'expense'}.
+        </div>
+        <div>
+          Total : <span> ₹{props.expensesFilterTotal}</span>
+        </div>
+      </div>
       <div className="page-summary__actions">
         <Link to="/create" className="btn">
           Add Expense

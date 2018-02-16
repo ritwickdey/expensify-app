@@ -1,0 +1,19 @@
+.input-group {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+  @media (max-width: $desktop-breakpoint) {
+    flex-direction: column;
+  }
+}
+
+.input-group__item {
+  width: 30%;
+  margin-bottom: $m-size;
+  @media (max-width: $desktop-breakpoint) {
+    width: 100%;
+  }
+}
