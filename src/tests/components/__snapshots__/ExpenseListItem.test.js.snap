@@ -1,21 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render Expense List Item correctly 1`] = `
-<div>
-  <h3>
-    <Link
-      replace={false}
-      to="/edit/1"
+<Link
+  class="list-item"
+  replace={false}
+  to="/edit/1"
+>
+  <div>
+    <h3
+      class="list-item__title"
     >
       Some Coffee Bill
-    </Link>
-  </h3>
-  <p>
+    </h3>
+    <p
+      class="list-item__sub-title"
+    >
+      1st Jan,1970
+    </p>
+  </div>
+  <div
+    class="list-item__amount"
+  >
     ₹
     100
-     - 
-    1st Jan,1970
-  </p>
-  <br />
-</div>
+  </div>
+</Link>
 `;

@@ -1,21 +1,59 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render ExpenseList with EMPTY expenses 1`] = `
-<div>
-  <h1>
-    Expense list
-  </h1>
-  <p>
-    No Expense
+<div
+  className="container"
+>
+  <div
+    className="list-header"
+  >
+    <div
+      className="show-for-small-screen"
+    >
+      Expenses
+    </div>
+    <div
+      className="show-for-large-screen"
+    >
+      Expenses
+    </div>
+    <div
+      className="show-for-large-screen"
+    >
+      Amount
+    </div>
+  </div>
+  <p
+    className="list-item list-item__message"
+  >
+    No Expense So Far!
   </p>
 </div>
 `;
 
 exports[`should render ExpenseList with expenses 1`] = `
-<div>
-  <h1>
-    Expense list
-  </h1>
+<div
+  className="container"
+>
+  <div
+    className="list-header"
+  >
+    <div
+      className="show-for-small-screen"
+    >
+      Expenses
+    </div>
+    <div
+      className="show-for-large-screen"
+    >
+      Expenses
+    </div>
+    <div
+      className="show-for-large-screen"
+    >
+      Amount
+    </div>
+  </div>
   <ExpenseListItem
     amount={100}
     createdAt={0}
