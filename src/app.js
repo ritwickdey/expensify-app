@@ -5,7 +5,7 @@ import 'react-dates/initialize';
 
 import { store } from './store/configureStore';
 import { getFilteredExpense } from './selectors/expenses';
-import { setTextFilter, sortByAmount } from './actions/filters';
+import { login, logout } from './actions/auth';
 import { AppRouter, history } from './routes/AppRouter';
 import { firebase } from './firebase/firebase';
 
@@ -38,11 +38,13 @@ ReactDOM.render(<div>Loading...</div>, document.getElementById('app'));
 
 firebase.auth().onAuthStateChanged(user => {
   if (user) {
+    appStore.dispatch(login(user.uid));
     appStore.dispatch(startSetExpenses()).then(() => renderApp());
     if (history.location.pathname === '/') history.push('/dashboard');
     console.log('logged in', user);
   } else {
     renderApp();
+    appStore.dispatch(logout());
     history.push('/');
     console.log('logged out');
   }
