@@ -1,0 +1,18 @@
+.page-summary {
+  background-color: $off-white2;
+  padding: $l-size 0;
+  margin-bottom: $l-size;
+}
+
+.page-summary__details {
+  font-size: $l-size - 0.5;
+  // text-align: center;
+
+  span {
+    font-weight: bold;
+  }
+}
+
+.page-summary__actions {
+  margin-top: $l-size;
+}

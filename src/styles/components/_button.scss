@@ -1,13 +1,14 @@
 .btn {
   color: $white;
-  background-color: darken($color4, 5%);
-  padding: $sm-size $m-size;
+  background-color: darken($color4, 1%);
+  padding: $m-size - 0.3 $m-size + 0.5;
   border: none;
   font-size: $m-text-size;
   border-radius: 4px;
   line-height: 1.5;
   cursor: pointer;
   outline: none;
+  text-decoration: none;
 }
 
 .btn__link {

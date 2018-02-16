@@ -7,7 +7,7 @@ export const Header = props => (
   <header className="header">
     <div className="container">
       <div className="header__container">
-        <Link className="header__title" to="/dashboard" exact={true}>
+        <Link className="header__title" to="/dashboard" exact="true">
           <h1>Expensify</h1>
         </Link>
         <button className="btn btn__link" onClick={props.startLogout}>Logout</button>

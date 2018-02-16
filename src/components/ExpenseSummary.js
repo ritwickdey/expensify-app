@@ -1,15 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { getFilteredExpense } from '../selectors/expenses';
 import { getExpensesTotal } from '../selectors/expenses-total';
 
 export const ExpenseSummary = props => (
-  <div>
-    <p>
-      Total Amount: ₹{props.expensesFilterTotal} | Viewing{' '}
-      {props.expensesFilterCount} of {props.expensesCount}{' '}
-      {props.expensesCount > 1 ? 'expenses' : 'expense'}
-    </p>
+  <div className="page-summary">
+    <div className="container">
+      <p className="page-summary__details">
+        Viewing <span> {props.expensesFilterCount} </span> of{' '}
+        <span> {props.expensesCount} </span>{' '}
+        {props.expensesCount > 1 ? 'expenses' : 'expense'} | Total :{' '}
+        <span> ₹{props.expensesFilterTotal}</span>
+      </p>
+      <div className="page-summary__actions">
+        <Link to="/create" className="btn">
+          Add Expense
+        </Link>
+      </div>
+    </div>
   </div>
 );
 
