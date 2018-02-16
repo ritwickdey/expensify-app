@@ -27,7 +27,9 @@ exports[`should render header correctly 1`] = `
   >
     Help
   </NavLink>
-  <button>
+  <button
+    onClick={[MockFunction]}
+  >
     Logout
   </button>
 </header>
