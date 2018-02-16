@@ -1,0 +1,31 @@
+.box-layout {
+  background: linear-gradient(45deg, $color1, lighten($color1, 15%));
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.box-layout__box {
+  background-color: $color2;
+  color: $white;
+  text-align: center;
+  padding: $l-size $xl-size;
+  border-radius: 15px;
+  box-shadow: 9px 11px 13px 0px rgba(0, 0, 0, 0.6);
+}
+
+.box-layout__title {
+  margin: $sm-size 0 0 0;
+  line-height: 1;
+  font-size: $l-size;
+}
+
+.box-layout__subtitle {
+  font-size: $m-size;
+  color: $off-white;
+  padding: $sm-size 0;
+  margin-bottom: $m-size;
+}

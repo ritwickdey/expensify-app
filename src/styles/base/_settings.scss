@@ -1,11 +1,15 @@
-$color1: #0b2d31;
-$color2: #084047;
-$color3: #11aa9d;
+$color1: #213755;;
+$color2: #2474A6 ;
+$color3: #11aa9d; 
+$color4: #F2A30F; 
+$color5: #E00B27; 
 $darken-color2: darken($color2, 5%);
 $lighten-color2: lighten($color2, 5%);
 
 $white: #ffffff;
 $off-white: rgba(250, 250, 250, 0.6);
+
+$m-text-size: 1.8rem;
 
 $sm-size: 0.8rem;
 $m-size: 1.6rem;
