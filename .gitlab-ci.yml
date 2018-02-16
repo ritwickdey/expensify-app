@@ -10,7 +10,7 @@ before_script:
 test:
   stage: test
   script:
-    - yarn test
+    - yarn test -- --coverage
   coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
 
 pages:
