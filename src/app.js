@@ -6,7 +6,7 @@ import 'react-dates/initialize';
 import { store } from './store/configureStore';
 import { getFilteredExpense } from './selectors/expenses';
 import { login, logout } from './actions/auth';
-import { AppRouter, history } from './routes/AppRouter';
+import { AppRouter, history, basename } from './routes/AppRouter';
 import { firebase } from './firebase/firebase';
 
 import {
@@ -43,7 +43,10 @@ firebase.auth().onAuthStateChanged(user => {
       console.log('Data Fetched');
       renderApp();
     });
-    if (history.location.pathname === '/') history.push('/dashboard');
+    console.log(history.location.pathname + '#', basename);
+    if (history.location.pathname + '#' === basename) {
+      history.push('/dashboard');
+    }
     console.log('logged in', user);
   } else {
     renderApp();

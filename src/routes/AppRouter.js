@@ -10,7 +10,7 @@ import { NotFoundPage } from '../components/NotFoundPage';
 import PrivateRoute from './PrivateRoute';
 import AnonymousRoute from './AnonymousRoute';
 
-const basename =
+export const basename =
   document.getElementsByTagName('base')[0].getAttribute('href') + '#';
 
 
