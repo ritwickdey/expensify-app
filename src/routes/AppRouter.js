@@ -15,7 +15,6 @@ const base = document.getElementsByTagName('base')[0].getAttribute('href');
 
 export const AppRouter = () => (
   <Router history={history} basename={base}>
-    <div>
       <Switch>
         <AnonymousRoute path="/" exact={true} component={LoginPage} />
         <PrivateRoute
@@ -31,6 +30,5 @@ export const AppRouter = () => (
         />
         <Route component={NotFoundPage} />
       </Switch>
-    </div>
   </Router>
 );
