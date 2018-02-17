@@ -8,6 +8,7 @@ import { getFilteredExpense } from './selectors/expenses';
 import { login, logout } from './actions/auth';
 import { AppRouter, history, basename } from './routes/AppRouter';
 import { firebase } from './firebase/firebase';
+import { LoadingPage } from './components/LoadingPage';
 
 import {
   addExpense,
@@ -34,7 +35,7 @@ const renderApp = () => {
   }
 };
 
-ReactDOM.render(<div>Loading...</div>, document.getElementById('app'));
+ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 
 firebase.auth().onAuthStateChanged(user => {
   if (user) {
