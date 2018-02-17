@@ -1,6 +1,7 @@
 import React from 'react';
-import createHistory from 'history/createBrowserHistory';
+import { createBrowserHistory } from 'history';
 import { Router, Route, Switch } from 'react-router-dom';
+
 import AddExpensePage from '../components/AddExpensePage';
 import EditExpensePage from '../components/EditExpensePage';
 import LoginPage from '../components/LoginPage';
@@ -9,26 +10,24 @@ import { NotFoundPage } from '../components/NotFoundPage';
 import PrivateRoute from './PrivateRoute';
 import AnonymousRoute from './AnonymousRoute';
 
-export const history = createHistory();
+const basename =
+  document.getElementsByTagName('base')[0].getAttribute('href') + '#';
 
-const base = document.getElementsByTagName('base')[0].getAttribute('href');
+
+export const history = createBrowserHistory({ basename });
 
 export const AppRouter = () => (
-  <Router history={history} basename={base}>
-      <Switch>
-        <AnonymousRoute path="/" exact={true} component={LoginPage} />
-        <PrivateRoute
-          path="/dashboard"
-          exact={true}
-          component={ExpenseDashboardPage}
-        />
-        <PrivateRoute path="/create" component={AddExpensePage} />
-        <PrivateRoute
-          path="/edit/:id"
-          exact={true}
-          component={EditExpensePage}
-        />
-        <Route component={NotFoundPage} />
-      </Switch>
+  <Router history={history}>
+    <Switch>
+      <AnonymousRoute path="/" exact={true} component={LoginPage} />
+      <PrivateRoute
+        path="/dashboard"
+        exact={true}
+        component={ExpenseDashboardPage}
+      />
+      <PrivateRoute path="/create" component={AddExpensePage} />
+      <PrivateRoute path="/edit/:id" exact={true} component={EditExpensePage} />
+      <Route component={NotFoundPage} />
+    </Switch>
   </Router>
 );
